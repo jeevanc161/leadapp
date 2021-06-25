@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-sm-4">
+            <h2 class="text-center alert alert-info">Lead Details</h2>
+            <p>
+                First Name: {{ lead.first_name}}
+            </p>
+            <p>
+                Last Name : {{lead.last_name}}
+            </p>
+            <p>
+                Age : {{lead.age}}
+            </p>
+            <p>
+                Agent : {{lead.agent.user.username}}
+            </p>
+            <p>
+                Organisation : {{lead.organisation}}
+            </p>
+            <p>
+                Category : {{lead.category}}
+            </p>
+
+        </div> 
+        <div class="col-sm-4">
+            <h2 class="text-center alert alert-info">Update Category</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy}}
+                <button class="btn btn-success btn-block" type="submit">Submit</button>
+            </form>
+
+        </div>  
+    </div>
+{% endblock content %}

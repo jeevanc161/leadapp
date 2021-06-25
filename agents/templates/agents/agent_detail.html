@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="margin-top: 50px;">
+    <h2 class="text-center alert alert-info">Agent Details</h2>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <!-- <th>Detail</th> -->
+            <!-- <th>Update</th> -->
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{agent.user.first_name }}</td>
+            <td>{{agent.user.last_name }}</td>
+            <td>{{agent.user.email }}</td>
+            <!-- <td>
+              <a href="{% url 'agents:agent_detail' agent.pk %}"> 
+                  <button>Detail</button>
+              </a>
+            </td> -->
+            <!-- <td>
+              <a href="{% url 'agents:agent_update' agent.pk %}">
+                  <button>Update</button>
+              </a>
+            </td> -->
+            <td>
+              <a href="{% url 'agents:agent_delete' agent.pk %}">
+                  <button>Delete</button> 
+              </a>
+            </td>
+          </tr>     
+        </tbody>
+      </table>
+</div>
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center alert alert-info" style="margin-top: 50px;">Category</h2>
+  <div class=row>
+    <div class="col-sm-10">
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Category </th>
+        <th>Count</th>
+      </tr>
+    </thead>    
+    <tbody>
+        <tr>
+            <td>Unassignd</td>
+            <td>
+                {{unassign_leads}}
+            </td>
+        </tr>
+      {% for category in category_list %}
+      <tr>
+        <td>
+            <a href="{% url 'leads:category_detail' category.pk %}">
+                {{category.name }}
+            </a>
+        </td>
+        <td>{{category.leads.count}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #42cef5;">
+  <a class="navbar-brand" href="{% url 'landing-page' %}">
+    <img src="{% static 'image/logo.png' %}" width="100" height="40"/>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'landing-page' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li  class="nav-item active">
+        {% if request.user.is_organisation %}
+        <a  class="nav-link" href="{% url 'leads:home_page' %}">Leads</a>
+        {% endif %}
+        {% if request.user.is_agent %}
+        <a  class="nav-link" href="{% url 'leads:home_page' %}">Leads</a>
+        {% endif %}
+      </li>
+      {% if request.user.is_organisation %}
+      <li  class="nav-item active">
+        <a  class="nav-link" href="{% url 'agents:agent_list' %}">Agents</a>
+      </li>
+      {% endif %}
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      {% if request.user.is_authenticated %}
+      <h5 style="color: #1d363d; align-items: center; margin-top: 10px;">
+        Loged In as :{{request.user.username}}
+      </h5>
+      {% endif %}   
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"> 
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          {% if not request.user.is_authenticated %}
+          <a class="dropdown-item" href="{% url 'signup' %}">Sign up</a>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <a class="dropdown-item" href="{% url 'logout'%}">Log out</a>
+          {% else %}
+          <a class="dropdown-item" href="{% url 'login'%}">Log in</a>
+          {% endif %}
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <h2 class="text-center alert alert-info" style="margin-top: 50px;">
+            Lead Detail View
+        </h2>       
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Age</th>
+                <th>Agent</th>
+                <th>Organisation</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                 <td>{{lead.first_name }}</td>
+                <td>{{lead.last_name }}</td>
+                <td>{{lead.age }}</td>
+                <td> {{lead.agent.user.username}}</td>
+                <td>  {{lead.organisation}}</td>
+                <td>{{lead.category}} </td>
+              </tr>
+            </tbody>
+          </table>    
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="{% url 'leads:lead_category_update' lead.pk%}">
+                <button>
+                    Change Category
+                </button>
+            </a>         
+        </div> 
+        {% if request.user.is_organisation %}
+        <div class="col-sm-3">
+            <a href="{% url 'leads:lead_delete' lead.pk %}">
+                <button>
+                    Delele Lead
+                </button>
+            </a>        
+        </div> 
+        <div class="col-sm-3">
+            <a href="{% url 'leads:lead_update' lead.pk %}">
+                <button>Update Lead</button>
+            </a>      
+        </div> 
+        <div class="col-sm-3">
+            {% if lead.agent == None %}
+            <a href="{% url 'leads:assign_agent' lead.pk%}">
+                <button>Asign Agent</button> 
+            </a>
+            {% else %}
+            <a href="{% url 'leads:assign_agent' lead.pk%}">
+                <button>Asign New Agent</button> 
+            </a>
+            {% endif %}      
+        </div> 
+        {% endif %}
+    </div>
+{% endblock content %}

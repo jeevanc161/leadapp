@@ -1,0 +1,30 @@
+{%  extends 'base.html' %}
+{% block content %}
+<div style="margin-top: 50px;">
+    <div class="row">
+
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h2 class="text-center alert alert-info">Are you sure to delete the Leads...</h2>
+            <div class="row">
+                <div class="col-sm-6" style="text-align: center;">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p}}
+                        <button class="btn btn-success" type="submit">Submit</button>
+                    </form>
+                </div>
+                <div class="col-sm-6" style="text-align: center;">
+                    <a href="{% url 'agents:agent_list'%}">
+                        <button class="btn btn-success" >Cencel</button>    
+                    </a>
+                </div>
+            </div>
+           
+            
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+</div>
+{% endblock content%}   
