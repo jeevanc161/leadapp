@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User , Lead, Agent, UserProfile , Category
+from .models import User , Lead, Agent, UserProfile , Category , Contactus
 
 class LeadAdmin(admin.ModelAdmin):
     list_display = [
@@ -21,6 +21,18 @@ class CategoryAdmin(admin.ModelAdmin):
         'organisation',
     ]
     list_filter = [ 'name' , 'organisation']
+
+class ContactUsAdmin(admin.ModelAdmin):
+
+    list_display = [
+        'name',
+        'email',
+        'message'
+    ]
+
+    ordering = ['-date_created']
+
+admin.site.register(Contactus , ContactUsAdmin)
 admin.site.register(User)
 admin.site.register(Lead , LeadAdmin)
 admin.site.register(Agent)

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.forms import fields
-from .models import Agent, Category, Lead
+from .models import Agent, Category, Lead , Contactus
 
 User = get_user_model()
 
@@ -59,3 +59,9 @@ class LeadCategoryUpdateForm(forms.ModelForm):
         fields = {
             'category',
         }
+
+class ContactUsForm(forms.ModelForm):
+
+    class Meta :
+        model = Contactus
+        fields = '__all__'

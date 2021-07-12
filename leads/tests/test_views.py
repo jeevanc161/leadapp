@@ -11,3 +11,4 @@ class LandingPageTest(TestCase):
         # print(response.content)  Way to display all content in page
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response , 'landing_page.html')
+        

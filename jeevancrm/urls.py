@@ -16,6 +16,9 @@ from leads import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , views.LandingPageView.as_view() , name = 'landing-page'),
+    path('about/' , views.AboutPageView.as_view() , name = 'about_page'),
+    path('service/' , views.ServicePageView.as_view() , name = 'service_page'),
+    path('contact/' , views.ContactPageView.as_view() , name = 'contact_page'),
     path('leads/' , include('leads.urls' , namespace = 'leads')),
     path('agent/' , include('agents.urls' , namespace = 'agents')),
     # path('crudapp/' , include('crudapp.urls' , namespace = 'crudapp'))

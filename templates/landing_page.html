@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div style="margin-top: 50px;">
-    <img src="{% static 'image/crm_home.jpg' %}" height="400" width="100%" />
-</div>
+
+ <!-- ======= Hero Section ======= -->
+ <section id="hero" class="d-flex align-items-center">
+    <div class="container d-flex flex-column align-items-center" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Jacks Pero</h1>
+      <h2>I'm a professional Python Developer From Indore, India</h2>
+      <a href="{% url 'about_page' %}" class="btn-about">About Me</a>
+    </div>
+  </section><!-- End Hero -->
 {% endblock content %}

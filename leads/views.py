@@ -4,8 +4,9 @@ from django.shortcuts import render , redirect , reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic 
 from .models import Lead , Category
-from .forms import LeadForm , CustomUserCreationForm ,AssignAgentForm , LeadCategoryUpdateForm
+from .forms import LeadForm , CustomUserCreationForm ,AssignAgentForm , LeadCategoryUpdateForm, ContactUsForm
 from agents.mixins import OrganisorAndLoginRequiredMixin
+from django.contrib import messages
 # CRUD+L -- Create, Retrive , Update , Delete , List
 
 
@@ -19,6 +20,28 @@ class SignupView(generic.CreateView):
 class LandingPageView(generic.TemplateView):
     template_name = 'landing_page.html'
 
+class AboutPageView(generic.TemplateView):
+    template_name = 'about.html'
+
+class ServicePageView(generic.TemplateView):
+    template_name = 'service.html'
+
+
+class ContactPageView(generic.TemplateView):
+    template_name = 'contact.html'
+    
+    def get_context_data(self, *args , **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = ContactUsForm()
+        context = {'form' : form}
+        return context
+
+    def post(self, request):
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Your message has been sent. Thank you!")
+            return redirect('/contact')
 def landing_page(request):
     return render(request , 'landing_page.html')
 
